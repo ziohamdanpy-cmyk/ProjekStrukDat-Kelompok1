@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+const int MAX = 100;
+// ==================================================
+// Stack Redo
+// ==================================================
+
+string redoStack[MAX];
+int redoTop = -1;
+
+// Mengecek apakah redo stack kosong
+bool redoIsEmpty() {
+    return redoTop == -1;
+}
+
+// Mengecek apakah redo stack penuh
+bool redoIsFull() {
+    return redoTop == MAX - 1;
+}
+
+// Menambahkan state ke redo stack
+void redoPush(string text) {
+    if (redoIsFull()) {
+        cout << "Redo Stack penuh!\n";
+        return;
+    }
+
+    redoStack[++redoTop] = text;
+}
+
+// Menghapus state teratas redo stack
+void redoPop() {
+    if (redoIsEmpty()) {
+        cout << "Redo Stack kosong!\n";
+        return;
+    }
+
+    redoTop--;
+}
+
+// Melihat state teratas tanpa menghapus
+string redoPeek() {
+    if (redoIsEmpty()) {
+        return "";
+    }
+
+    return redoStack[redoTop];
+}
+
+// Menampilkan isi redo stack
+void displayRedo() {
+    if (redoIsEmpty()) {
+        cout << "Redo Stack kosong!\n";
+        return;
+    }
+
+    cout << "\n=== Isi Redo Stack ===\n";
+
+    for (int i = redoTop; i >= 0; i--) {
+        cout << redoStack[i] << endl;
+    }
+
+    cout << endl;
+}
